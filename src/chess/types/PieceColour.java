@@ -1,5 +1,5 @@
 package chess.types;
 
-public enum pieceColour {
+public enum PieceColour {
 	WHITE, BLACK
 }
