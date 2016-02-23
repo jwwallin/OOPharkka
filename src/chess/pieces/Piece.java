@@ -1,5 +1,6 @@
-package chess;
+package chess.pieces;
 
+import chess.ChessBoard;
 import chess.types.*;
 
 public abstract class Piece {
@@ -45,10 +46,13 @@ public abstract class Piece {
 	//Setters--------------------------------------------------------------------------------------------------------------------------------------
 	
 	/**
-	 * @param position the position to set
+	 * @param position the position to set, max length 2
+	 * 
+	 * @PRE position.length == 2
 	 */
 	public void setPosition(int[] position) {
-		this.position = position;
+		if (position.length == 2)
+			this.position = position;
 	}
 	/**
 	 * @param hasMoved the hasMoved to set
@@ -64,6 +68,27 @@ public abstract class Piece {
 	}
 	
 	
-	abstract void move(int x, int y);
-	abstract boolean isLegalMove(int x, int y);
+	//Constructors----------------------------------------------------------------------------------------------------------------------------------
+	
+	/**
+	 * @param player the player colour
+	 * @param position pieces initial position, max length 2
+	 * @param hasMoved whether piece has moved yet
+	 * @param isTaken whether piece has been taken
+	 * @param canJump whether piece can jump over other pieces
+	 */
+	public Piece(PieceColour player, int[] position, boolean hasMoved, boolean isTaken, boolean canJump) {
+		this.player = player;
+		this.position = position;
+		this.hasMoved = hasMoved;
+		this.isTaken = isTaken;
+		this.canJump = canJump;
+	}
+	
+
+	//Methods----------------------------------------------------------------------------------------------------------------------------------
+	
+	
+	public abstract void move(ChessBoard currentBoard, int x, int y);
+	public abstract boolean isLegalMove(ChessBoard currentBoard, int x, int y);
 }
