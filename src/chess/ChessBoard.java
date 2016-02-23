@@ -9,18 +9,35 @@ public class ChessBoard {
 		return board[x][y];
 	}
 	
-	public void move(int[] posOrig, int[] posMoveTo) {
+	public boolean move(int[] posOrig, int[] posMoveTo) {
 		//check if position data is valid
-		if (posOrig.length != 2 || posOrig.length != 2) return;
+		if (posOrig.length != 2 || posOrig.length != 2) return false;
 		//move
 		if (board[posMoveTo[0]][posMoveTo[1]] == null) {//check if MoveTo position is empty
 			//if is
-			board[posOrig[0]][posOrig[1]].move(this, posMoveTo[0], posMoveTo[1]); //call move for current piece to move
+			if (!board[posOrig[0]][posOrig[1]].move(this, posMoveTo[0], posMoveTo[1])) return false; // if current piece not moved successfully
 			board[posMoveTo[0]][posMoveTo[1]] = board[posOrig[0]][posOrig[1]];
 			board[posOrig[0]][posOrig[1]] = null;
+			return true;
 			
-			
-		} //TODO if MoveTo position is not empty
+		} else {
+			//TODO if MoveTo position is not empty
+			return false;
+		}
+	}
+	
+	/**
+	 * @return if board drawing is successful
+	 */
+	public boolean drawBoard() {
+		return false;
+	}
+	
+	/**
+	 * @return -1, 0, 1 being black player is in check, no check, white player is in check
+	 */
+	public int isCheck() {
+		return 0;
 	}
 
 }
