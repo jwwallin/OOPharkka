@@ -89,6 +89,6 @@ public abstract class Piece {
 	//Methods----------------------------------------------------------------------------------------------------------------------------------
 	
 	
-	public abstract void move(ChessBoard currentBoard, int x, int y);
+	public abstract boolean move(ChessBoard currentBoard, int x, int y);
 	public abstract boolean isLegalMove(ChessBoard currentBoard, int x, int y);
 }
