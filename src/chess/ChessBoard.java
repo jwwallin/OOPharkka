@@ -11,11 +11,11 @@ public class ChessBoard {
 	
 	public boolean move(int[] posOrig, int[] posMoveTo) {
 		//check if position data is valid
-		if (posOrig.length != 2 || posOrig.length != 2) return false;
+		if (posOrig.length != 2 || posMoveTo.length != 2) return false;
 		//move
-		if (board[posMoveTo[0]][posMoveTo[1]] == null) {//check if MoveTo position is empty
-			//if is
-			if (!board[posOrig[0]][posOrig[1]].move(this, posMoveTo[0], posMoveTo[1])) return false; // if current piece not moved successfully
+		if (board[posMoveTo[0]][posMoveTo[1]] == null) {//if target position is empty
+			if (!board[posOrig[0]][posOrig[1]].move(this, posMoveTo[0], posMoveTo[1])) // if current piece not moved successfully
+				return false; 
 			board[posMoveTo[0]][posMoveTo[1]] = board[posOrig[0]][posOrig[1]];
 			board[posOrig[0]][posOrig[1]] = null;
 			return true;
