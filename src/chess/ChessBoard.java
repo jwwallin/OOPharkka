@@ -8,13 +8,8 @@ public class ChessBoard {
 	public Piece getPiece(int x, int y) {
 		return board[x][y];
 	}
-<<<<<<< HEAD
-
-	public void move(int[] posOrig, int[] posMoveTo) {
-=======
 	
 	public boolean move(int[] posOrig, int[] posMoveTo) {
->>>>>>> 5a77992c1f4887e41016c3d28146084d7c1d5f02
 		//check if position data is valid
 		if (posOrig.length != 2 || posMoveTo.length != 2) return false;
 		//move
@@ -23,11 +18,6 @@ public class ChessBoard {
 				return false; 
 			board[posMoveTo[0]][posMoveTo[1]] = board[posOrig[0]][posOrig[1]];
 			board[posOrig[0]][posOrig[1]] = null;
-<<<<<<< HEAD
-
-
-		} //TODO if MoveTo position is not empty
-=======
 			return true;
 			
 		} else {
