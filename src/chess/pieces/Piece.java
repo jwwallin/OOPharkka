@@ -4,7 +4,7 @@ import chess.ChessBoard;
 import chess.types.*;
 
 /**
- * @author aku
+ * @author Jussi Wallin, Tero Yrjölä, Niklas Niemelä
  *
  */
 public abstract class Piece {

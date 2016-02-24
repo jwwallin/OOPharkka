@@ -7,23 +7,26 @@ import chess.ChessBoard;
 import chess.types.PieceColour;
 
 /**
- * @author aku
+ * @author Jussi Wallin, Tero Yrjölä, Niklas Niemelä
  *
  */
 public class Rook extends Piece {
 
 	/**
-	 * @param player
-	 * @param position
-	 * @param hasMoved
-	 * @param isTaken
-	 * @param canJump
+	 * @param player the player colour
+	 * @param position piece's initial position, max length 2
+	 * @param hasMoved whether piece has moved yet
+	 * @param isTaken whether piece has been taken
+	 * @param canJump whether piece can jump over other pieces
 	 */
 	public Rook(PieceColour player, int[] position, boolean hasMoved, boolean isTaken, boolean canJump) {
 		super(player, position, hasMoved, isTaken, canJump);
-		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * @param player the player colour
+	 * @param position piece's initial position, max length 2
+	 */
 	public Rook(PieceColour player, int[] position) {
 		super(player, position, false, false, false);
 	}

@@ -6,6 +6,10 @@ import static org.fusesource.jansi.Ansi.Color.*;
 
 import java.io.IOException;
 
+/**
+ * @author Jussi Wallin, Tero Yrjölä, Niklas Niemelä
+ *
+ */
 public class Start {
 
 	public static void main(String[] args) {

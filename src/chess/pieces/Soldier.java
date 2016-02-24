@@ -3,6 +3,10 @@ package chess.pieces;
 import chess.ChessBoard;
 import chess.types.*;
 
+/**
+ * @author Jussi Wallin, Tero Yrjölä, Niklas Niemelä
+ *
+ */
 public class Soldier extends Piece {
 
 	/**
