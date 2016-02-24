@@ -24,9 +24,15 @@ public class Start {
 		ChessBoard j = new ChessBoard();
 		Rook R = new Rook(PieceColour.BLACK, null);
 		j.addPiece(R, 2, 2);
-		j.addPiece(new Soldier(PieceColour.WHITE, null), 3, 2);
+		int[] pos1 = {2,3};
+		Soldier S = new Soldier(PieceColour.WHITE, pos1);
+		j.addPiece(S, 2, 3);
 		
 		j.showBoard();
+		int[] pos = {2, 6};
+		j.move(S.getPosition(), pos);
+		j.showBoard();
+		
 		try {
 			System.in.read();
 		} catch (IOException e) {
