@@ -46,9 +46,9 @@ public class Soldier extends Piece {
 	@Override
 	public boolean isLegalMove(ChessBoard currentBoard, int x, int y) {
 		if (this.getPlayer() == PieceColour.WHITE) {
-			if (y < this.getPosition()[1]) return false;
+			if (y < this.getPosition()[1]) return false; // white moves up
 		} else if (this.getPlayer() == PieceColour.BLACK) {
-			if (y > this.getPosition()[1]) return false;
+			if (y > this.getPosition()[1]) return false; // black moves down
 		}
 		if (currentBoard.getPiece(x, y) == null) { //if target square is empty
 			if (x-this.getPosition()[0] == 0) { //if is moving straight ahead
