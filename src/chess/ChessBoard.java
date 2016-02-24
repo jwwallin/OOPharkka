@@ -65,7 +65,7 @@ public class ChessBoard {
 		System.out.println(ansi().reset() + "---------------------------------"); 					//draw the top horizontal line
 
 		for (int i = 0; i < 8; i++){
-			white = !white;															//after each row, change starting color
+			white = !white;																			//after each row, change starting color
 
 			if (i > 0){
 				System.out.println(ansi().reset() + "---------------------------------");			//draw horizontal lines in between
@@ -76,7 +76,7 @@ public class ChessBoard {
 				System.out.print(ansi().reset() + "|");												//draw a vertical line before each character
 
 				if (white){
-					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {
+					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {	//choose correct colors and print character's id
 						System.out.print(ansi().bg(WHITE).fg(GREEN).a(" " + getId(getPiece(j,i))+ " "));
 					} else {
 
