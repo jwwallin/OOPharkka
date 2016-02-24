@@ -47,7 +47,31 @@ public class Rook extends Piece {
 	 */
 	@Override
 	public boolean isLegalMove(ChessBoard currentBoard, int x, int y) {
-		// TODO EVERYTHING
+		if (currentBoard.getPiece(x, y) == null) { //if target square is empty
+			if (y == this.getPosition()[1] && x != this.getPosition()[0]) { //if only moving horizontally
+				if (x < this.getPosition()[0]) { // check which direction move is
+					for (int i = this.getPosition()[0] + 1; i < x; i++) { // loop through all squares between current square and target square
+						if (currentBoard.getPiece(i, y) != null) return false; // if there is a piece between current square and target square
+					}
+				} else {
+					for (int i = this.getPosition()[0]; i > x; i--) { // loop through all squares between current square and target square
+						if (currentBoard.getPiece(i, y) != null) return false; // if there is a piece between current square and target square
+					}
+				}
+			} else if (y != this.getPosition()[1] && x == this.getPosition()[0]) { // if only moving vertically
+				if (y < this.getPosition()[1]) { // check which direction move is
+					for (int i = this.getPosition()[1] + 1; i < y; i++) { // loop through all squares between current square and target square
+						if (currentBoard.getPiece(x, i) != null) return false; // if there is a piece between current square and target square
+					}
+				} else {
+					for (int i = this.getPosition()[1]; i > y; i--) { // loop through all squares between current square and target square
+						if (currentBoard.getPiece(x, i) != null) return false; // if there is a piece between current square and target square
+					}
+				}
+			}
+		} else {
+			
+		}
 		return false;
 	}
 
