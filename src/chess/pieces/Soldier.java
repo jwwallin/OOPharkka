@@ -53,11 +53,10 @@ public class Soldier extends Piece {
 			}
 		} else {
 			if (Math.abs(x-this.getPosition()[0]) == 1) { // if moving 1 square to the side when moving to target square
-				if (currentBoard.getPiece(x, y).getPlayer() != this.getPlayer()) // if piece in moveTo square is different colour
+				if (currentBoard.getPiece(x, y).getPlayer() != this.getPlayer()) // if piece in target square is different colour
 					return true; 
 			}
 		}
-		//TODO add all checks
 		return false;
 	}
 
