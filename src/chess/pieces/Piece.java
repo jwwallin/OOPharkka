@@ -3,6 +3,10 @@ package chess.pieces;
 import chess.ChessBoard;
 import chess.types.*;
 
+/**
+ * @author aku
+ *
+ */
 public abstract class Piece {
 	private PieceColour player;
 	private int[] position = new int[2];
@@ -89,6 +93,19 @@ public abstract class Piece {
 	//Methods----------------------------------------------------------------------------------------------------------------------------------
 	
 	
-	public abstract void move(ChessBoard currentBoard, int x, int y);
+	/**
+	 * @param currentBoard the current board the piece is on
+	 * @param x horizontal coordinate of target square
+	 * @param y vertical coordinate of target square
+	 * @return whether moving the piece was successful
+	 */
+	public abstract boolean move(ChessBoard currentBoard, int x, int y);
+	
+	/**
+	 * @param currentBoard the current board the piece is on
+	 * @param x horizontal coordinate of target square
+	 * @param y vertical coordinate of target square
+	 * @return whether moving the piece to target square is e legal move
+	 */
 	public abstract boolean isLegalMove(ChessBoard currentBoard, int x, int y);
 }
