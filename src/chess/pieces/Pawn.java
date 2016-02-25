@@ -7,7 +7,7 @@ import chess.types.*;
  * @author Jussi Wallin, Tero Yrjölä, Niklas Niemelä
  *
  */
-public class Soldier extends Piece {
+public class Pawn extends Piece {
 
 	/**
 	 * @param player the player colour
@@ -16,7 +16,7 @@ public class Soldier extends Piece {
 	 * @param isTaken whether piece has been taken
 	 * @param canJump whether piece can jump over other pieces
 	 */
-	public Soldier(PieceColour player, int[] position, boolean hasMoved, boolean isTaken, boolean canJump) {
+	public Pawn(PieceColour player, int[] position, boolean hasMoved, boolean isTaken, boolean canJump) {
 		super(player, position, hasMoved, isTaken, canJump);
 		// TODO Auto-generated constructor stub
 	}
@@ -25,7 +25,7 @@ public class Soldier extends Piece {
 	 * @param player the player colour
 	 * @param position piece's initial position, max length 2
 	 */
-	public Soldier(PieceColour player, int[] position) {
+	public Pawn(PieceColour player, int[] position) {
 		super(player, position, false, false, false);
 	}
 

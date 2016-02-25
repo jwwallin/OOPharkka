@@ -19,7 +19,7 @@ public class ChessBoard {
 		board[x][y] = piece;
 	}
 	public String getId(Piece piece){
-		if (piece instanceof Soldier){
+		if (piece instanceof Pawn){
 			return "S";
 		}
 		if (piece instanceof Rook){
