@@ -4,6 +4,9 @@ import chess.pieces.*;
 import chess.types.PieceColour;
 
 import org.fusesource.jansi.AnsiConsole;
+
+import com.sun.media.jfxmedia.events.PlayerStateEvent.PlayerState;
+
 import static org.fusesource.jansi.Ansi.*;
 import static org.fusesource.jansi.Ansi.Color.*;
 
@@ -15,8 +18,8 @@ public class ChessBoard {
 		return board[x][y];
 	}
 
-	public void addPiece(Piece piece, int[] pos){
-		board[pos[0]][pos[1]] = piece;
+	public void addPiece(Piece piece, int x, int y){
+		board[x][y] = piece;
 	}
 	public String getId(Piece piece){
 		if (piece instanceof Pawn){
@@ -97,10 +100,10 @@ public class ChessBoard {
 					
 				}else{
 					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {
-						System.out.print(ansi().bg(BLACK).fg(YELLOW).a(" " + getId(getPiece(j,i))+ " "));
+						System.out.print(ansi().bg(BLACK).fg(GREEN).a(" " + getId(getPiece(j,i))+ " "));
 					} else {
 
-						System.out.print(ansi().bg(BLACK).fg(BLUE).a(" " + getId(getPiece(j,i))+ " "));
+						System.out.print(ansi().bg(BLACK).fg(RED).a(" " + getId(getPiece(j,i))+ " "));
 					}
 				white = !white;
 				}
