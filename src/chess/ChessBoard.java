@@ -18,6 +18,9 @@ public class ChessBoard {
 	public void addPiece(Piece piece, int[] pos){
 		board[pos[0]][pos[1]] = piece;
 	}
+	public void addPiece(Piece piece, int x, int y){
+		board[x][y] = piece;
+	}
 	public String getId(Piece piece){
 		if (piece instanceof Pawn){
 			//System.out.println(piece.getPlayer());
@@ -30,6 +33,9 @@ public class ChessBoard {
 		}
 		if (piece instanceof Rook){
 			return "R";
+		}
+		if (piece instanceof Queen) {
+			return "Q";
 		}
 		return " ";
 	}
@@ -52,6 +58,27 @@ public class ChessBoard {
 		} else {
 			//TODO if MoveTo position is not empty
 			return false;
+		}
+	}
+	
+	public boolean move(int origX, int origY, int targetX, int targetY) {
+		//move
+		if (board[targetX][targetY] == null) {//if target position is empty
+			if (!board[origX][origY].move(this, targetX, targetY)) // if current piece not moved successfully
+				return false; 
+			board[targetX][targetY] = board[origX][origY];
+			board[origX][origY] = null;
+			return true;
+
+		} else {
+			if (!board[origX][origY].move(this, targetX, targetY)) // if current piece not moved successfully
+				return false;
+			board[targetX][targetY].setX(-1);
+			board[targetX][targetY].setY(-1);
+			board[targetX][targetY].setTaken(true);
+			board[targetX][targetY] = board[origX][origY];
+			board[origX][origY] = null;
+			return true;
 		}
 	}
 
@@ -89,7 +116,6 @@ public class ChessBoard {
 					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {	//choose correct colors and print character's id
 						System.out.print(ansi().bg(WHITE).fg(GREEN).a(" " + getId(getPiece(j,i))+ " "));
 					} else {
-
 						System.out.print(ansi().bg(WHITE).fg(RED).a(" " + getId(getPiece(j,i))+ " "));
 
 					}
@@ -97,10 +123,9 @@ public class ChessBoard {
 					
 				}else{
 					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {
-						System.out.print(ansi().bg(BLACK).fg(YELLOW).a(" " + getId(getPiece(j,i))+ " "));
+						System.out.print(ansi().bg(BLACK).fg(GREEN).a(" " + getId(getPiece(j,i))+ " "));
 					} else {
-
-						System.out.print(ansi().bg(BLACK).fg(BLUE).a(" " + getId(getPiece(j,i))+ " "));
+						System.out.print(ansi().bg(BLACK).fg(RED).a(" " + getId(getPiece(j,i))+ " "));
 					}
 				white = !white;
 				}
