@@ -25,7 +25,28 @@ public class Start {
 		/**
 		 * 
 		 */
-		NewGame.SetPieces();
+		NewGame.newGame(j);
+		
+		
+		for (int rank=0;rank<8;rank++){
+			for (int file=0;file<8;file++){
+				switch(rank){
+				case 1:
+					Pawn blackPawn = new Pawn(PieceColour.BLACK,file,rank);
+					j.addPiece(blackPawn,file,rank);
+					break;
+					
+				case 7:
+					Pawn whitePawn = new Pawn(PieceColour.WHITE,file,rank);
+					j.addPiece(whitePawn,file,rank-1);
+					break;
+					
+					
+				}
+			}
+		}
+		
+		/*
 		//positions for Pieces(named by Piece + initial file)
 		//rank8
 		int[] pos_Ra = {0,0};
@@ -81,7 +102,7 @@ public class Start {
 		j.addPiece(Ra,pos_Bf);
 		Knight Ng = new Knight(PieceColour.BLACK, pos_Ng);
 		j.addPiece(Ra,pos_Ng);
-		*/
+		
 		Rook Rh = new Rook(PieceColour.BLACK, pos_Rh);
 		j.addPiece(Ra,pos_Rh);
 		//rank7
@@ -136,10 +157,10 @@ public class Start {
 		j.addPiece(Ra,pos_bf);
 		Knight ng = new Knight(PieceColour.WHITE, pos_ng);
 		j.addPiece(Ra,pos_ng);
-		*/
+		
 		Rook rh = new Rook(PieceColour.WHITE, pos_rh);
 		j.addPiece(Ra,pos_rh);
-		
+		*/
 		
 		j.showBoard();
 		//j.move(P.getPosition(), pos);
