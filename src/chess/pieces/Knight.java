@@ -13,15 +13,23 @@ import chess.types.PieceColour;
 public class Knight extends Piece {
 
 	/**
-	 * @param player
-	 * @param position
-	 * @param hasMoved
-	 * @param isTaken
-	 * @param canJump
+	 * @param player the player colour
+	 * @param position piece's initial position, max length 2
+	 * @param hasMoved whether piece has moved yet
+	 * @param isTaken whether piece has been taken
+	 * @param canJump whether piece can jump over other pieces
 	 */
-	public Knight(PieceColour player, int[] position, boolean hasMoved, boolean isTaken, boolean canJump) {
-		super(player, position, hasMoved, isTaken, canJump);
+	public Knight(PieceColour player, int x, int y, boolean hasMoved, boolean isTaken, boolean canJump) {
+		super(player, x, y, hasMoved, isTaken, canJump);
 		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * @param player the player colour
+	 * @param position piece's initial position, max length 2
+	 */
+	public Knight(PieceColour player, int x, int y) {
+		super(player, x, y, false, false, false);
 	}
 
 	/* (non-Javadoc)

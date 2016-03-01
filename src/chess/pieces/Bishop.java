@@ -16,8 +16,8 @@ public class Bishop extends Piece {
 	 * @param isTaken whether piece has been taken
 	 * @param canJump whether piece can jump over other pieces
 	 */
-	public Bishop(PieceColour player, int[] position, boolean hasMoved, boolean isTaken, boolean canJump) {
-		super(player, position, hasMoved, isTaken, canJump);
+	public Bishop(PieceColour player, int x, int y, boolean hasMoved, boolean isTaken, boolean canJump) {
+		super(player, x, y, hasMoved, isTaken, canJump);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -25,8 +25,8 @@ public class Bishop extends Piece {
 	 * @param player the player colour
 	 * @param position piece's initial position, max length 2
 	 */
-	public Bishop(PieceColour player, int[] position) {
-		super(player, position, false, false, false);
+	public Bishop(PieceColour player, int x, int y) {
+		super(player, x, y, false, false, false);
 	}
 
 	/* (non-Javadoc)
@@ -35,8 +35,8 @@ public class Bishop extends Piece {
 	@Override
 	public boolean move(ChessBoard currentBoard, int x, int y) {
 		if (!isLegalMove(currentBoard, x, y)) return false;
-		int[] pos = {x,y};
-		this.setPosition(pos);
+		this.setX(x);
+		this.setY(y);
 		return true;
 	}
 
@@ -48,38 +48,38 @@ public class Bishop extends Piece {
 		
 		if (currentBoard.getPiece(x, y) == null) { //if target square is empty
 			if (Math.abs(x) == Math.abs(y)) { //if moving diagonally
-				if (x > this.getPosition()[0]) { //if moving diagonally to the right
-					if (y < this.getPosition()[1]) { //if moving diagonally up
-						int X = this.getPosition()[0];
-						int Y = this.getPosition()[1];
+				if (x > this.getX()) { //if moving diagonally to the right
+					if (y < this.getY()) { //if moving diagonally up
+						int X = this.getX();
+						int Y = this.getY();
 						
-						for (int i = 1; i < Math.abs(x - this.getPosition()[0]); i++) { //loop through all squares between current and target squares
+						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
 							if (currentBoard.getPiece(X+i, Y+i) != null) return false;
 						}
 						return true;
 					} else {
-						int X = this.getPosition()[0];
-						int Y = this.getPosition()[1];
+						int X = this.getX();
+						int Y = this.getY();
 						
-						for (int i = 1; i < Math.abs(x - this.getPosition()[0]); i++) { //loop through all squares between current and target squares
+						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
 							if (currentBoard.getPiece(X+i, Y-i) != null) return false;
 						}
 						return true;
 					}
 				} else { //moving diagonally to the left
-					if (y < this.getPosition()[1]) { //if moving diagonally up
-						int X = this.getPosition()[0];
-						int Y = this.getPosition()[1];
+					if (y < this.getY()) { //if moving diagonally up
+						int X = this.getX();
+						int Y = this.getY();
 						
-						for (int i = 1; i < Math.abs(x - this.getPosition()[0]); i++) { //loop through all squares between current and target squares
+						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
 							if (currentBoard.getPiece(X-i, Y+i) != null) return false;
 						}
 						return true;
 					} else {
-						int X = this.getPosition()[0];
-						int Y = this.getPosition()[1];
+						int X = this.getX();
+						int Y = this.getY();
 						
-						for (int i = 1; i < Math.abs(x - this.getPosition()[0]); i++) { //loop through all squares between current and target squares
+						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
 							if (currentBoard.getPiece(X-i, Y-i) != null) return false;
 						}
 						return true;
@@ -88,38 +88,38 @@ public class Bishop extends Piece {
 			}
 		} else {
 			if (Math.abs(x) == Math.abs(y)) { //if moving diagonally
-				if (x > this.getPosition()[0]) { //if moving diagonally to the right
-					if (y < this.getPosition()[1]) { //if moving diagonally up
-						int X = this.getPosition()[0];
-						int Y = this.getPosition()[1];
+				if (x > this.getX()) { //if moving diagonally to the right
+					if (y < this.getY()) { //if moving diagonally up
+						int X = this.getX();
+						int Y = this.getY();
 						
-						for (int i = 1; i < Math.abs(x - this.getPosition()[0]); i++) { //loop through all squares between current and target squares
+						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
 							if (currentBoard.getPiece(X+i, Y+i) != null) return false;
 						}
 						return true;
 					} else {
-						int X = this.getPosition()[0];
-						int Y = this.getPosition()[1];
+						int X = this.getX();
+						int Y = this.getY();
 						
-						for (int i = 1; i < Math.abs(x - this.getPosition()[0]); i++) { //loop through all squares between current and target squares
+						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
 							if (currentBoard.getPiece(X+i, Y-i) != null) return false;
 						}
 						return true;
 					}
 				} else { //moving diagonally to the left
-					if (y < this.getPosition()[1]) { //if moving diagonally up
-						int X = this.getPosition()[0];
-						int Y = this.getPosition()[1];
+					if (y < this.getY()) { //if moving diagonally up
+						int X = this.getX();
+						int Y = this.getY();
 						
-						for (int i = 1; i < Math.abs(x - this.getPosition()[0]); i++) { //loop through all squares between current and target squares
+						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
 							if (currentBoard.getPiece(X-i, Y+i) != null) return false;
 						}
 						return true;
 					} else {
-						int X = this.getPosition()[0];
-						int Y = this.getPosition()[1];
+						int X = this.getX();
+						int Y = this.getY();
 						
-						for (int i = 1; i < Math.abs(x - this.getPosition()[0]); i++) { //loop through all squares between current and target squares
+						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
 							if (currentBoard.getPiece(X-i, Y-i) != null) return false;
 						}
 						return true;

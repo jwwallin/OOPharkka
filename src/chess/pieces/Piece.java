@@ -8,8 +8,11 @@ import chess.types.*;
  *
  */
 public abstract class Piece {
+	
+
 	private PieceColour player;
-	private int[] position = new int[2];
+	private int x;
+	private int y;
 	private boolean hasMoved;
 	private boolean isTaken;
 	private boolean canJump;
@@ -21,12 +24,6 @@ public abstract class Piece {
 	 */
 	public PieceColour getPlayer() {
 		return player;
-	}
-	/**
-	 * @return the position
-	 */
-	public int[] getPosition() {
-		return position;
 	}
 	/**
 	 * @return the hasMoved
@@ -46,18 +43,22 @@ public abstract class Piece {
 	public boolean canJump() {
 		return canJump;
 	}
+	/**
+	 * @return the x
+	 */
+	public int getX() {
+		return x;
+	}
+	/**
+	 * @return the y
+	 */
+	public int getY() {
+		return y;
+	}
+	
 
 	//Setters--------------------------------------------------------------------------------------------------------------------------------------
 	
-	/**
-	 * @param position the position to set, max length 2
-	 * 
-	 * @PRE position.length == 2
-	 */
-	public void setPosition(int[] position) {
-		if (position.length == 2)
-			this.position = position;
-	}
 	/**
 	 * @param hasMoved the hasMoved to set
 	 */
@@ -70,7 +71,18 @@ public abstract class Piece {
 	public void setTaken(boolean isTaken) {
 		this.isTaken = isTaken;
 	}
-	
+	/**
+	 * @param x the x to set
+	 */
+	public void setX(int x) {
+		this.x = x;
+	}
+	/**
+	 * @param y the y to set
+	 */
+	public void setY(int y) {
+		this.y = y;
+	}
 	
 	//Constructors----------------------------------------------------------------------------------------------------------------------------------
 	
@@ -81,9 +93,10 @@ public abstract class Piece {
 	 * @param isTaken whether piece has been taken
 	 * @param canJump whether piece can jump over other pieces
 	 */
-	public Piece(PieceColour player, int[] position, boolean hasMoved, boolean isTaken, boolean canJump) {
+	public Piece(PieceColour player, int x, int y, boolean hasMoved, boolean isTaken, boolean canJump) {
 		this.player = player;
-		this.position = position;
+		this.x = x;
+		this.y = y;
 		this.hasMoved = hasMoved;
 		this.isTaken = isTaken;
 		this.canJump = canJump;
