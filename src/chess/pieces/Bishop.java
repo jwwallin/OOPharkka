@@ -54,7 +54,7 @@ public class Bishop extends Piece {
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X+i, Y+i) != null) return false;
+							if (currentBoard.getPiece(X+i, Y+i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					} else {
@@ -62,7 +62,7 @@ public class Bishop extends Piece {
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X+i, Y-i) != null) return false;
+							if (currentBoard.getPiece(X+i, Y-i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					}
@@ -72,7 +72,7 @@ public class Bishop extends Piece {
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X-i, Y+i) != null) return false;
+							if (currentBoard.getPiece(X-i, Y+i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					} else {
@@ -80,7 +80,7 @@ public class Bishop extends Piece {
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X-i, Y-i) != null) return false;
+							if (currentBoard.getPiece(X-i, Y-i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					}
@@ -95,7 +95,7 @@ public class Bishop extends Piece {
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X+i, Y+i) != null) return false;
+							if (currentBoard.getPiece(X+i, Y+i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					} else {
@@ -103,7 +103,7 @@ public class Bishop extends Piece {
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X+i, Y-i) != null) return false;
+							if (currentBoard.getPiece(X+i, Y-i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					}
@@ -113,7 +113,7 @@ public class Bishop extends Piece {
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X-i, Y+i) != null) return false;
+							if (currentBoard.getPiece(X-i, Y+i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					} else {
@@ -121,7 +121,7 @@ public class Bishop extends Piece {
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X-i, Y-i) != null) return false;
+							if (currentBoard.getPiece(X-i, Y-i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					}
