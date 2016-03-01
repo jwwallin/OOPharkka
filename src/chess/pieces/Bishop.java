@@ -87,6 +87,7 @@ public class Bishop extends Piece {
 				}
 			}
 		} else {
+			if (currentBoard.getPiece(x, y).getPlayer() == this.getPlayer()) return false;
 			if (Math.abs(x) == Math.abs(y)) { //if moving diagonally
 				if (x > this.getX()) { //if moving diagonally to the right
 					if (y < this.getY()) { //if moving diagonally up
