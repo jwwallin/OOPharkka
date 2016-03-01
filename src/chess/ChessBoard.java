@@ -15,19 +15,29 @@ public class ChessBoard {
 		return board[x][y];
 	}
 
-	public void addPiece(Piece piece, int x, int y){
-		board[x][y] = piece;
+	public void addPiece(Piece piece, int[] pos){
+		board[pos[0]][pos[1]] = piece;
 	}
 	public String getId(Piece piece){
 		if (piece instanceof Pawn){
-			return "S";
+			//System.out.println(piece.getPlayer());
+			switch(piece.getPlayer()){
+			case BLACK:
+				return "P";
+			case WHITE:
+				return "p";
+			}
 		}
 		if (piece instanceof Rook){
 			return "R";
 		}
 		return " ";
 	}
-
+	
+	public Piece[][] getBoard(){
+		return board;
+	}
+	
 	public boolean move(int[] posOrig, int[] posMoveTo) {
 		//check if position data is valid
 		if (posOrig.length != 2 || posMoveTo.length != 2) return false;
@@ -87,10 +97,10 @@ public class ChessBoard {
 					
 				}else{
 					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {
-						System.out.print(ansi().bg(BLACK).fg(GREEN).a(" " + getId(getPiece(j,i))+ " "));
+						System.out.print(ansi().bg(BLACK).fg(YELLOW).a(" " + getId(getPiece(j,i))+ " "));
 					} else {
 
-						System.out.print(ansi().bg(BLACK).fg(RED).a(" " + getId(getPiece(j,i))+ " "));
+						System.out.print(ansi().bg(BLACK).fg(BLUE).a(" " + getId(getPiece(j,i))+ " "));
 					}
 				white = !white;
 				}
