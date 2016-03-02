@@ -17,28 +17,51 @@ public class ChessBoard {
 	public Piece getPiece(int x, int y) {
 		return board[x][y];
 	}
-
-	public void addPiece(Piece piece, int x, int y){
-		board[x][y] = piece;
-	}
 	public void addPiece(Piece piece, int x, int y){
 		board[x][y] = piece;
 	}
 	public String getId(Piece piece){
 		if (piece instanceof Pawn){
-			//System.out.println(piece.getPlayer());
-			switch(piece.getPlayer()){
-			case BLACK:
+			if (piece.getPlayer() == PieceColour.BLACK) {
 				return "P";
-			case WHITE:
+			} else {
 				return "p";
 			}
 		}
 		if (piece instanceof Rook){
-			return "R";
+			if (piece.getPlayer() == PieceColour.BLACK) {
+				return "R";
+			} else {
+				return "r";
+			}
+		}
+		if (piece instanceof Bishop) {
+			if (piece.getPlayer() == PieceColour.BLACK) {
+				return "B";
+			} else {
+				return "b";
+			}
+		}
+		if (piece instanceof Knight) {
+			if (piece.getPlayer() == PieceColour.BLACK) {
+				return "N";
+			} else {
+				return "n";
+			}
+		}
+		if (piece instanceof King) {
+			if (piece.getPlayer() == PieceColour.BLACK) {
+				return "K";
+			} else {
+				return "k";
+			}
 		}
 		if (piece instanceof Queen) {
-			return "Q";
+			if (piece.getPlayer() == PieceColour.BLACK) {
+				return "Q";
+			} else {
+				return "q";
+			}
 		}
 		return " ";
 	}
@@ -128,10 +151,10 @@ public class ChessBoard {
 					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {
 						System.out.print(ansi().bg(BLACK).fg(GREEN).a(" " + getId(getPiece(j,i))+ " "));
 					} else {
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 
->>>>>>> origin/master
+//>>>>>>> origin/master
 						System.out.print(ansi().bg(BLACK).fg(RED).a(" " + getId(getPiece(j,i))+ " "));
 					}
 				white = !white;
