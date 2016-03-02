@@ -3,13 +3,6 @@ package run;
 import org.fusesource.jansi.AnsiConsole;
 
 import chess.ChessBoard;
-import chess.pieces.Rook;
-import chess.pieces.Pawn;
-import chess.types.PieceColour;
-
-import static org.fusesource.jansi.Ansi.*;
-import static org.fusesource.jansi.Ansi.Color.*;
-
 import java.io.IOException;
 
 /**

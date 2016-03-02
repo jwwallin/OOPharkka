@@ -2,11 +2,6 @@ package chess;
 
 import chess.pieces.*;
 import chess.types.PieceColour;
-
-import org.fusesource.jansi.AnsiConsole;
-
-import com.sun.media.jfxmedia.events.PlayerStateEvent.PlayerState;
-
 import static org.fusesource.jansi.Ansi.*;
 import static org.fusesource.jansi.Ansi.Color.*;
 
