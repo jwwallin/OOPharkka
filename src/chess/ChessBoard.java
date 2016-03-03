@@ -136,7 +136,7 @@ public class ChessBoard {
 					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {	//choose correct colors and print character's id
 						System.out.print(ansi().bg(WHITE).fg(GREEN).a(" " + getId(getPiece(j,i))+ " "));
 					} else {
-						System.out.print(ansi().bg(WHITE).fg(RED).a(" " + getId(getPiece(j,i))+ " "));
+						System.out.print(ansi().bg(WHITE).bold().fg(RED).bold().a(" " + getId(getPiece(j,i))+ " "));
 					}
 					white = !white;
 					
@@ -144,18 +144,18 @@ public class ChessBoard {
 					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {
 						System.out.print(ansi().bg(BLACK).fg(GREEN).a(" " + getId(getPiece(j,i))+ " "));
 					} else {
-						System.out.print(ansi().bg(BLACK).fg(RED).a(" " + getId(getPiece(j,i))+ " "));
+						System.out.print(ansi().bg(BLACK).fg(RED).bold().a(" " + getId(getPiece(j,i))+ " "));
 					}
 				white = !white;
 				}
 
 				if (j==7){
-					System.out.println(ansi().reset() + "|");									//after the 8th character, draw a vertical line
+					System.out.println(ansi().reset() + "| " + (ansi().fg(BLUE).bold().a(i+1)));	//after the 8th character, draw a vertical line
+				
 				}
 			}
 		}
-		
 		System.out.println(ansi().reset() + "--------------------------");					//draw the bottom horizontal line
-
+		System.out.println(ansi().fg(BLUE).bold().a("  A  B  C  D  E  F  G  H"));
 	}
 }
