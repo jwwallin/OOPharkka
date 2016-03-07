@@ -21,9 +21,6 @@ public class ChessBoard {
 	public void addPiece(Piece piece, int x, int y){
 		board[x][y] = piece;
 	}
-	public void addPiece(Piece piece, int x, int y){
-		board[x][y] = piece;
-	}
 	public String getId(Piece piece){
 		if (piece instanceof Pawn){
 			//System.out.println(piece.getPlayer());
@@ -65,6 +62,7 @@ public class ChessBoard {
 	}
 	
 	public boolean move(int origX, int origY, int targetX, int targetY) {
+		if (board[origX][origY] == null) return false; //if no piece to be moved
 		//move
 		if (board[targetX][targetY] == null) {//if target position is empty
 			if (!board[origX][origY].move(this, targetX, targetY)) // if current piece not moved successfully
@@ -128,10 +126,6 @@ public class ChessBoard {
 					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {
 						System.out.print(ansi().bg(BLACK).fg(GREEN).a(" " + getId(getPiece(j,i))+ " "));
 					} else {
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 						System.out.print(ansi().bg(BLACK).fg(RED).a(" " + getId(getPiece(j,i))+ " "));
 					}
 				white = !white;
