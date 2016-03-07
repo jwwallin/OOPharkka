@@ -66,23 +66,6 @@ public class ChessBoard {
 		return board;
 	}
 	
-	public boolean move(int[] posOrig, int[] posMoveTo) {
-		//check if position data is valid
-		if (posOrig.length != 2 || posMoveTo.length != 2) return false;
-		//move
-		if (board[posMoveTo[0]][posMoveTo[1]] == null) {//if target position is empty
-			if (!board[posOrig[0]][posOrig[1]].move(this, posMoveTo[0], posMoveTo[1])) // if current piece not moved successfully
-				return false; 
-			board[posMoveTo[0]][posMoveTo[1]] = board[posOrig[0]][posOrig[1]];
-			board[posOrig[0]][posOrig[1]] = null;
-			return true;
-
-		} else {
-			//TODO if MoveTo position is not empty
-			return false;
-		}
-	}
-	
 	public boolean move(int origX, int origY, int targetX, int targetY) {
 		if (board[origX][origY] == null) return false; //if no piece to be moved
 		//move
@@ -114,7 +97,7 @@ public class ChessBoard {
 				if (p instanceof King) { //if piece is a King
 
 					for (Piece[] arr2: board) { //loop through rows
-						for (Piece p2: arr) { //loop through columns
+						for (Piece p2: arr2) { //loop through columns
 							if (p == null) continue; //if no piece in current square
 							if (p.getPlayer() == p2.getPlayer()) continue; //if piece is same colour do nothing
 							if (p2.isLegalMove(this, p.getX(), p.getY())) { //if current piece can move to target square
