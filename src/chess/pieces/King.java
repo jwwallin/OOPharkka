@@ -35,8 +35,10 @@ public class King extends Piece {
 	 */
 	@Override
 	public boolean move(ChessBoard currentBoard, int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		if (!isLegalMove(currentBoard, x, y)) return false;
+		this.setX(x);
+		this.setY(y);
+		return true;
 	}
 
 	/* (non-Javadoc)
