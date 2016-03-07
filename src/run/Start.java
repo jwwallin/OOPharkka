@@ -50,7 +50,7 @@ public class Start {
 
 	private static int[] interpretCoord(String ChessCoord) {
 		int[] coords = {0, 0};
-		
+		//TODO interpretation
 		return coords;
 	}
 
