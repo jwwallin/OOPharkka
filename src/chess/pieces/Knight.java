@@ -11,6 +11,18 @@ import chess.types.PieceColour;
  *
  */
 public class Knight extends Piece {
+	
+	public static final int[][] siirrot = { //all possible move for knight
+			{-1, -2},
+			{-1, 2},
+			{1, -2},
+			{1, 2},
+			{-2, -1},
+			{-2, 1},
+			{2, -1},
+			{2, 1},
+			
+	};
 
 	/**
 	 * @param player the player colour
@@ -37,8 +49,10 @@ public class Knight extends Piece {
 	 */
 	@Override
 	public boolean move(ChessBoard currentBoard, int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		if (!isLegalMove(currentBoard, x, y)) return false;
+		this.setX(x);
+		this.setY(y);
+		return true;
 	}
 
 	/* (non-Javadoc)
@@ -46,7 +60,16 @@ public class Knight extends Piece {
 	 */
 	@Override
 	public boolean isLegalMove(ChessBoard currentBoard, int x, int y) {
-		// TODO Auto-generated method stub
+		for (int[] siirto: siirrot) { //loop through all possible moves for knight
+			if (this.getX() + siirto[0] == x && this.getY() + siirto[1] == y) { //if target square is a legal square
+				if (currentBoard.getPiece(x, y) == null) {
+					return true;
+				} else {
+					if (currentBoard.getPiece(x, y).getPlayer() == this.getPlayer()) return false;
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
