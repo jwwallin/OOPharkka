@@ -4,7 +4,7 @@ import chess.ChessBoard;
 import chess.pieces.*;
 import chess.types.PieceColour;
 
-class NewGame extends ChessBoard{
+public class NewGame {
 	/**
 	 * @param j The Chessboard to make new game to
 	 */
