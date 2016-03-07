@@ -2,11 +2,6 @@ package chess;
 
 import chess.pieces.*;
 import chess.types.PieceColour;
-
-import org.fusesource.jansi.AnsiConsole;
-
-import com.sun.media.jfxmedia.events.PlayerStateEvent.PlayerState;
-
 import static org.fusesource.jansi.Ansi.*;
 import static org.fusesource.jansi.Ansi.Color.*;
 
@@ -23,19 +18,46 @@ public class ChessBoard {
 	}
 	public String getId(Piece piece){
 		if (piece instanceof Pawn){
-			//System.out.println(piece.getPlayer());
-			switch(piece.getPlayer()){
-			case BLACK:
+			if (piece.getPlayer() == PieceColour.BLACK) {
 				return "P";
-			case WHITE:
+			} else {
 				return "p";
 			}
 		}
 		if (piece instanceof Rook){
-			return "R";
+			if (piece.getPlayer() == PieceColour.BLACK) {
+				return "R";
+			} else {
+				return "r";
+			}
+		}
+		if (piece instanceof Bishop) {
+			if (piece.getPlayer() == PieceColour.BLACK) {
+				return "B";
+			} else {
+				return "b";
+			}
+		}
+		if (piece instanceof Knight) {
+			if (piece.getPlayer() == PieceColour.BLACK) {
+				return "N";
+			} else {
+				return "n";
+			}
+		}
+		if (piece instanceof King) {
+			if (piece.getPlayer() == PieceColour.BLACK) {
+				return "K";
+			} else {
+				return "k";
+			}
 		}
 		if (piece instanceof Queen) {
-			return "Q";
+			if (piece.getPlayer() == PieceColour.BLACK) {
+				return "Q";
+			} else {
+				return "q";
+			}
 		}
 		return " ";
 	}
@@ -95,30 +117,28 @@ public class ChessBoard {
 	 */
 	public int isCheck() {
 		return 0;
-
 	}
 
 	public void showBoard(){
 		boolean white = false;
-		System.out.println(ansi().reset() + "---------------------------------"); 					//draw the top horizontal line
+		System.out.println(ansi().reset() + "--------------------------"); 					//draw the top horizontal line
 
 		for (int i = 0; i < 8; i++){
 			white = !white;																			//after each row, change starting color
 
 			if (i > 0){
-				System.out.println(ansi().reset() + "---------------------------------");			//draw horizontal lines in between
+				System.out.println(ansi().reset() + "--------------------------");			//draw horizontal lines in between
 			}
 
 			for (int j = 0; j < 8; j++){
-
-				System.out.print(ansi().reset() + "|");												//draw a vertical line before each character
-
+				if (j==0){
+					System.out.print(ansi().reset() + "|");												//draw a vertical line before each character
+				}
 				if (white){
 					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {	//choose correct colors and print character's id
 						System.out.print(ansi().bg(WHITE).fg(GREEN).a(" " + getId(getPiece(j,i))+ " "));
 					} else {
-						System.out.print(ansi().bg(WHITE).fg(RED).a(" " + getId(getPiece(j,i))+ " "));
-
+						System.out.print(ansi().bg(WHITE).bold().fg(RED).bold().a(" " + getId(getPiece(j,i))+ " "));
 					}
 					white = !white;
 					
@@ -126,22 +146,18 @@ public class ChessBoard {
 					if (getPiece(j,i) != null && getPiece(j,i).getPlayer()==PieceColour.WHITE) {
 						System.out.print(ansi().bg(BLACK).fg(GREEN).a(" " + getId(getPiece(j,i))+ " "));
 					} else {
-						System.out.print(ansi().bg(BLACK).fg(RED).a(" " + getId(getPiece(j,i))+ " "));
+						System.out.print(ansi().bg(BLACK).fg(RED).bold().a(" " + getId(getPiece(j,i))+ " "));
 					}
 				white = !white;
 				}
 
-
 				if (j==7){
-					System.out.println(ansi().reset() + "|");									//after the 8th character, draw a vertical line
-					if(i==7){
-						
-					}
+					System.out.println(ansi().reset() + "| " + (ansi().fg(BLUE).bold().a(i+1)));	//after the 8th character, draw a vertical line
+				
 				}
 			}
 		}
-		
-		System.out.println(ansi().reset() + "---------------------------------");					//draw the bottom horizontal line
-
+		System.out.println(ansi().reset() + "--------------------------");					//draw the bottom horizontal line
+		System.out.println(ansi().fg(BLUE).bold().a("  A  B  C  D  E  F  G  H"));
 	}
 }
