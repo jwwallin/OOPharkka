@@ -106,19 +106,32 @@ public class ChessBoard {
 	}
 
 	/**
-	 * @return if board drawing is successful
-	 */
-	public boolean drawBoard() {
-		return false;
-	}
-
-	/**
-	 * @return -1, 0, 1 being black player is in check, no check, white player is in check
+	 * @return (-1, 0, 1) being (black player is in check, no check, white player is in check)
 	 */
 	public int isCheck() {
+		for (Piece[] arr: this.getBoard()) { //loop through rows
+			for (Piece p: arr) { //loop through columns
+				if (p instanceof King) { //if piece is a King
+
+					for (Piece[] arr2: board) { //loop through rows
+						for (Piece p2: arr) { //loop through columns
+							if (p == null) continue; //if no piece in current square
+							if (p.getPlayer() == p2.getPlayer()) continue; //if piece is same colour do nothing
+							if (p2.isLegalMove(this, p.getX(), p.getY())) { //if current piece can move to target square
+								if (p.getPlayer() == PieceColour.WHITE)return 1;
+								if (p.getPlayer() == PieceColour.BLACK) return -1;
+							}
+						}
+					}
+				}
+			}
+		}
 		return 0;
 	}
 
+	/**
+	 * Draws the board in terminal
+	 */
 	public void showBoard(){
 		boolean white = false;
 		System.out.println(ansi().reset() + "--------------------------"); 					//draw the top horizontal line
