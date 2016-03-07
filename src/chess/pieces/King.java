@@ -44,7 +44,30 @@ public class King extends Piece {
 	 */
 	@Override
 	public boolean isLegalMove(ChessBoard currentBoard, int x, int y) {
-		// TODO Auto-generated method stub
+		if (currentBoard.getPiece(x, y) == null) { //if target square is empty
+			if(Math.abs(x - this.getX()) <= 1 && Math.abs(y - this.getY()) <= 1) { //if moving by one square in any direction
+				for (Piece[] arr: currentBoard.getBoard()) { //loop through rows
+					for (Piece p: arr) { //loop through columns
+						if (p == null) continue; //if no piece in current square
+						if (p.getPlayer() == this.getPlayer()) continue; //if piece is same colour do nothing
+						if (p.isLegalMove(currentBoard, x, y)) return false; //if current piece can move to target square
+					}
+				}
+				return true; //if this is reached no piece is threatening target square
+			}
+		} else {
+			if (currentBoard.getPiece(x, y).getPlayer() == this.getPlayer()) return false; //if piece in target square is same colour
+			if(Math.abs(x - this.getX()) <= 1 && Math.abs(y - this.getY()) <= 1) { //if moving by one square in any direction
+				for (Piece[] arr: currentBoard.getBoard()) { //loop through rows
+					for (Piece p: arr) { //loop through columns
+						if (p == null) continue; //if no piece in current square
+						if (p.getPlayer() == this.getPlayer()) continue; //if piece is same colour do nothing
+						if (p.isLegalMove(currentBoard, x, y)) return false; //if current piece can move to target square
+					}
+				}
+				return true; //if this is reached no piece is threatening target square
+			}
+		}
 		return false;
 	}
 
