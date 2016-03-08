@@ -3,7 +3,6 @@ package run;
 import org.fusesource.jansi.AnsiConsole;
 
 import chess.ChessBoard;
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -38,18 +37,22 @@ public class Start {
 		case "move":
 			int[] currentPiece = interpretCoord(sc.next());
 			int[] targetSquare = interpretCoord(sc.next());
-			
+			currentPiece = new int[] {1,7};
+			targetSquare = new int[] {2,7};
 			board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1]);
 			return true;
 		case "help":
 			System.out.println("This is the help");
 			return true;
+		default:
+			//System.out.print("");
 		}
 		return true;
 	}
 
 	private static int[] interpretCoord(String ChessCoord) {
 		int[] coords = {0, 0};
+		
 		//TODO interpretation
 		return coords;
 	}
