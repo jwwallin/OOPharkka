@@ -37,23 +37,72 @@ public class Start {
 		case "move":
 			int[] currentPiece = interpretCoord(sc.next());
 			int[] targetSquare = interpretCoord(sc.next());
-			currentPiece = new int[] {1,7};
-			targetSquare = new int[] {2,7};
 			board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1]);
 			return true;
 		case "help":
 			System.out.println("This is the help");
 			return true;
 		default:
-			//System.out.print("");
 		}
 		return true;
 	}
 
 	private static int[] interpretCoord(String ChessCoord) {
 		int[] coords = {0, 0};
-		
-		//TODO interpretation
+		char file = Character.toLowerCase(ChessCoord.charAt(0));
+		char rank = ChessCoord.charAt(1);
+		switch(file){
+		case 'a':
+			coords[0] = 0;
+			break;
+		case 'b':
+			coords[0] = 1;
+			break;
+		case 'c':
+			coords[0] = 2;
+			break;
+		case 'd':
+			coords[0] = 3;
+			break;
+		case 'e':
+			coords[0] = 4;
+			break;
+		case 'f':
+			coords[0] = 5;
+			break;
+		case 'g':
+			coords[0] = 6;
+			break;
+		case 'h':
+			coords[0] = 7;
+			break;
+		}
+		switch(rank){
+		case '1':
+			coords[1] = 0;
+			break;
+		case '2':
+			coords[1] = 1;
+			break;
+		case '3':
+			coords[1] = 2;
+			break;
+		case '4':
+			coords[1] = 3;
+			break;
+		case '5':
+			coords[1] = 4;
+			break;
+		case '6':
+			coords[1] = 5;
+			break;
+		case '7':
+			coords[1] = 6;
+			break;
+		case '8':
+			coords[1] = 7;
+			break;
+		}
 		return coords;
 	}
 
