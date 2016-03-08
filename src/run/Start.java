@@ -3,6 +3,9 @@ package run;
 import org.fusesource.jansi.AnsiConsole;
 
 import chess.ChessBoard;
+import chess.pieces.King;
+import chess.types.PieceColour;
+
 import java.util.Scanner;
 
 /**
@@ -22,6 +25,17 @@ public class Start {
 		j.showBoard();
 		while (executeCommand(sc, j)) {
 			j.showBoard();
+			
+			if (j.isCheck() != 0) {
+				switch (j.isCheck()) {
+				case -1:
+					System.out.println("Black player is in check!");
+					break;
+				case 1:
+					System.out.println("White player is in check!");
+					break;
+				}
+			}
 		}
 		
 		sc.close();
@@ -37,7 +51,21 @@ public class Start {
 		case "move":
 			int[] currentPiece = interpretCoord(sc.next());
 			int[] targetSquare = interpretCoord(sc.next());
-			board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1]);
+			if (board.getPiece(currentPiece[0], currentPiece[1]).getPlayer() == PieceColour.BLACK && board.isCheck() == -1) {
+				if (!(board.getPiece(currentPiece[0], currentPiece[1]) instanceof King)) {
+					System.out.println("Olet homo! Siirrä kunkkua!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				} else {
+					board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1]);
+				}
+			} else if (board.getPiece(currentPiece[0], currentPiece[1]).getPlayer() == PieceColour.WHITE && board.isCheck() == 1) {
+				if (!(board.getPiece(currentPiece[0], currentPiece[1]) instanceof King)) {
+					System.out.println("Olet homo! Siirrä kunkkua!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				} else {
+					board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1]);
+				}
+			} else {
+				board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1]);
+			}
 			return true;
 		case "help":
 			System.out.println("This is the help");
