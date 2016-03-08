@@ -98,7 +98,7 @@ public class ChessBoard {
 
 					for (Piece[] arr2: board) { //loop through rows
 						for (Piece p2: arr2) { //loop through columns
-							if (p == null) continue; //if no piece in current square
+							if (p2 == null) continue; //if no piece in current square
 							if (p.getPlayer() == p2.getPlayer()) continue; //if piece is same colour do nothing
 							if (p2.isLegalMove(this, p.getX(), p.getY())) { //if current piece can move to target square
 								if (p.getPlayer() == PieceColour.WHITE)return 1;

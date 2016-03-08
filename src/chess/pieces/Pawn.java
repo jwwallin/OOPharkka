@@ -46,9 +46,9 @@ public class Pawn extends Piece {
 	@Override
 	public boolean isLegalMove(ChessBoard currentBoard, int x, int y) {
 		if (this.getPlayer() == PieceColour.WHITE) {
-			if (y < this.getY()) return false; // white moves up
+			if (y > this.getY()) return false; // white moves up
 		} else if (this.getPlayer() == PieceColour.BLACK) {
-			if (y > this.getY()) return false; // black moves down
+			if (y < this.getY()) return false; // black moves down
 		}
 		if (currentBoard.getPiece(x, y) == null) { //if target square is empty
 			if (x-this.getX() == 0) { //if is moving straight ahead
@@ -56,7 +56,7 @@ public class Pawn extends Piece {
 				if (!this.hasMoved() && y-this.getY() == 2 && currentBoard.getPiece(x, y-1) == null) return true; // if has not moved, is moving 2 squares forward and there is no piece in the way
 			}
 		} else {
-			if (Math.abs(x-this.getX()) == 1) { // if moving 1 square to the side when moving to target square
+			if (Math.abs(x-this.getX()) == 1 && Math.abs(y-this.getY()) == 1) { // if moving 1 square to the side and 1 square forward when moving to target square
 				if (currentBoard.getPiece(x, y).getPlayer() != this.getPlayer()) // if piece in target square is different colour
 					return true; 
 			}

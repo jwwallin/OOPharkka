@@ -48,51 +48,52 @@ public class Rook extends Piece {
 		if (currentBoard.getPiece(x, y) == null) { //if target square is empty
 			if (y == this.getY() && x != this.getX()) { //if only moving horizontally
 				if (x < this.getX()) { // check which direction move is
-					for (int i = this.getX() + 1; i < x; i++) { // loop through all squares between current square and target square
+					for (int i = this.getX() - 1; i > x; i--) { // loop through all squares between current square and target square
 						if (currentBoard.getPiece(i, y) != null) return false; // if there is a piece between current square and target square
 					}
 					return true;
 				} else {
-					for (int i = this.getX(); i > x; i--) { // loop through all squares between current square and target square
+					for (int i = this.getX() + 1; i < x; i++) { // loop through all squares between current square and target square
 						if (currentBoard.getPiece(i, y) != null) return false; // if there is a piece between current square and target square
 					}
 					return true;
 				}
 			} else if (y != this.getY() && x == this.getX()) { // if only moving vertically
 				if (y < this.getY()) { // check which direction move is
-					for (int i = this.getY() + 1; i < y; i++) { // loop through all squares between current square and target square
+					for (int i = this.getY() - 1; i > y; i--) { // loop through all squares between current square and target square
 						if (currentBoard.getPiece(x, i) != null) return false; // if there is a piece between current square and target square
 					}
 					return true;
 				} else {
-					for (int i = this.getY(); i > y; i--) { // loop through all squares between current square and target square
+					for (int i = this.getY() + 1; i < y; i++) { // loop through all squares between current square and target square
 						if (currentBoard.getPiece(x, i) != null) return false; // if there is a piece between current square and target square
 					}
 					return true;
 				}
 			}
 		} else {
-			if (currentBoard.getPiece(x, y).getPlayer() == this.getPlayer()) return false;
+			if (currentBoard.getPiece(x, y).getPlayer() == this.getPlayer()) return false; //if piece in target square is same colour as this piece
+			
 			if (y == this.getY() && x != this.getX()) { //if only moving horizontally
 				if (x < this.getX()) { // check which direction move is
-					for (int i = this.getX() + 1; i < x; i++) { // loop through all squares between current square and target square
+					for (int i = this.getX() - 1; i > x; i--) { // loop through all squares between current square and target square
 						if (currentBoard.getPiece(i, y) != null) return false; // if there is a piece between current square and target square
 					}
 					return true;
 				} else {
-					for (int i = this.getX(); i > x; i--) { // loop through all squares between current square and target square
+					for (int i = this.getX() + 1; i < x; i++) { // loop through all squares between current square and target square
 						if (currentBoard.getPiece(i, y) != null) return false; // if there is a piece between current square and target square
 					}
 					return true;
 				}
 			} else if (y != this.getY() && x == this.getX()) { // if only moving vertically
 				if (y < this.getY()) { // check which direction move is
-					for (int i = this.getY() + 1; i < y; i++) { // loop through all squares between current square and target square
+					for (int i = this.getY() - 1; i > y; i--) { // loop through all squares between current square and target square
 						if (currentBoard.getPiece(x, i) != null) return false; // if there is a piece between current square and target square
 					}
 					return true;
 				} else {
-					for (int i = this.getY(); i > y; i--) { // loop through all squares between current square and target square
+					for (int i = this.getY() + 1; i < y; i++) { // loop through all squares between current square and target square
 						if (currentBoard.getPiece(x, i) != null) return false; // if there is a piece between current square and target square
 					}
 					return true;
