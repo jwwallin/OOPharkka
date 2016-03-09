@@ -52,13 +52,22 @@ public class Pawn extends Piece {
 		}
 		if (currentBoard.getPiece(x, y) == null) { //if target square is empty
 			if (x-this.getX() == 0) { //if is moving straight ahead
-				if (Math.abs(y-this.getY()) == 1) return true; //if moving 1 square forward
-				if (!this.hasMoved() && y-this.getY() == 2 && currentBoard.getPiece(x, y-1) == null) return true; // if has not moved, is moving 2 squares forward and there is no piece in the way
+				
+				if (Math.abs(y-this.getY()) == 1) {//if moving 1 square forward
+					this.setHasMoved(true);
+					return true; 
+				}
+				if (!this.hasMoved() && Math.abs(y-this.getY()) == 2 && currentBoard.getPiece(x, y-1) == null) { // if has not moved, is moving 2 squares forward and there is no piece in the way
+					this.setHasMoved(true);
+					return true; 
+				}
 			}
 		} else {
 			if (Math.abs(x-this.getX()) == 1 && Math.abs(y-this.getY()) == 1) { // if moving 1 square to the side and 1 square forward when moving to target square
-				if (currentBoard.getPiece(x, y).getPlayer() != this.getPlayer()) // if piece in target square is different colour
+				if (currentBoard.getPiece(x, y).getPlayer() != this.getPlayer()) { // if piece in target square is different colour
+					this.setHasMoved(true);
 					return true; 
+				}
 			}
 		}
 		return false;

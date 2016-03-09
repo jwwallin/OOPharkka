@@ -4,8 +4,10 @@ import org.fusesource.jansi.AnsiConsole;
 
 import chess.ChessBoard;
 import chess.pieces.King;
+import chess.pieces.Piece;
 import chess.types.PieceColour;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -45,30 +47,60 @@ public class Start {
 	
 	private static boolean executeCommand(Scanner sc, ChessBoard board) {
 		String command = sc.next();
+		
 		switch (command) {
 		case "exit":
 			return false;
 		case "move":
 			int[] currentPiece = interpretCoord(sc.next());
 			int[] targetSquare = interpretCoord(sc.next());
-			if (board.getPiece(currentPiece[0], currentPiece[1]).getPlayer() == PieceColour.BLACK && board.isCheck() == -1) {
-				if (!(board.getPiece(currentPiece[0], currentPiece[1]) instanceof King)) {
-					System.out.println("Olet homo! Siirr‰ kunkkua!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			Piece pieceToMove = board.getPiece(currentPiece[0], currentPiece[1]);
+			
+			if (board.isWhitePlayerTurn() == (pieceToMove.getPlayer() == PieceColour.WHITE)) { //if it is current piece's player's turn to move
+
+				if (pieceToMove.getPlayer() == PieceColour.BLACK && board.isCheck() == -1) {//if moving black and black is in check
+					if (!(pieceToMove instanceof King)) { //if not moving king
+						System.out.println("Siirr‰ kunkkua! Paina Enter jatkaaksesi.");
+						try {
+							System.in.read(); //wait for enter key
+						} catch (IOException e) {
+						}
+					} else {
+						if (board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
+							board.setWhitePlayerTurn(!board.isWhitePlayerTurn());
+						}
+					}
+				} else if (pieceToMove.getPlayer() == PieceColour.WHITE && board.isCheck() == 1) {//if moving white and white is in check
+					if (!(pieceToMove instanceof King)) {//if not moving king
+						System.out.println("Siirr‰ kunkkua! Paina Enter jatkaaksesi.");
+						try {
+							System.in.read(); //wait for enter key
+						} catch (IOException e) {
+						}
+					} else {
+						if (board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
+							board.setWhitePlayerTurn(!board.isWhitePlayerTurn());
+						}
+					}
 				} else {
-					board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1]);
-				}
-			} else if (board.getPiece(currentPiece[0], currentPiece[1]).getPlayer() == PieceColour.WHITE && board.isCheck() == 1) {
-				if (!(board.getPiece(currentPiece[0], currentPiece[1]) instanceof King)) {
-					System.out.println("Olet homo! Siirr‰ kunkkua!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-				} else {
-					board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1]);
+					if (board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
+						board.setWhitePlayerTurn(!board.isWhitePlayerTurn());
+					}
 				}
 			} else {
-				board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1]);
+				System.out.println("Et voi siirt‰‰ omaa nappulaa kahdesti per‰kk‰in!");
+				try {
+					System.in.read(); //wait for enter key
+				} catch (IOException e) {
+				}
 			}
 			return true;
 		case "help":
-			System.out.println("This is the help");
+			System.out.println("This is the help! hihi!");
+			try {
+				System.in.read(); //wait for enter key
+			} catch (IOException e) {
+			}
 			return true;
 		default:
 		}
@@ -77,6 +109,9 @@ public class Start {
 
 	private static int[] interpretCoord(String ChessCoord) {
 		int[] coords = {0, 0};
+		if (ChessCoord.length() != 2) {
+			
+		}
 		char file = Character.toLowerCase(ChessCoord.charAt(0));
 		char rank = ChessCoord.charAt(1);
 		switch(file){
@@ -134,4 +169,11 @@ public class Start {
 		return coords;
 	}
 
+	private static void saveGame() {
+		//TODO save
+	}
+	
+	private static void loadGame() {
+		//TODO load
+	}
 }
