@@ -9,6 +9,8 @@ public class NewGame {
 	 * @param j The Chessboard to make new game to
 	 */
 	public static void newGame(ChessBoard j){
+		j.setWhitePlayerTurn(true);
+		
 		for (int rank=0;rank<8;rank++){
 			for (int file=0;file<8;file++){
 				switch(rank){

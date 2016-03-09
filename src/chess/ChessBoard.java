@@ -7,10 +7,24 @@ import static org.fusesource.jansi.Ansi.Color.*;
 
 public class ChessBoard {
 	private Piece[][] board = new Piece[8][8];
-	
+	private boolean whitePlayerTurn = false;
+
+	/**
+	 * @return the whitePlayerTurn
+	 */
+	public boolean isWhitePlayerTurn() {
+		return whitePlayerTurn;
+	}
 
 	public Piece getPiece(int x, int y) {
 		return board[x][y];
+	}
+
+	/**
+	 * @param whitePlayerTurn the whitePlayerTurn to set
+	 */
+	public void setWhitePlayerTurn(boolean whitePlayerTurn) {
+		this.whitePlayerTurn = whitePlayerTurn;
 	}
 
 	public void addPiece(Piece piece, int x, int y){
