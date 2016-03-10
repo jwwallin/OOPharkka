@@ -1,5 +1,7 @@
 package chess.pieces;
 
+import java.io.Serializable;
+
 import chess.ChessBoard;
 import chess.types.*;
 
@@ -7,7 +9,7 @@ import chess.types.*;
  * @author Jussi Wallin, Tero Yrjölä, Niklas Niemelä
  *
  */
-public abstract class Piece {
+public abstract class Piece implements Serializable{
 	
 
 	private PieceColour player;

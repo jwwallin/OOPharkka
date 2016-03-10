@@ -7,7 +7,12 @@ import chess.pieces.King;
 import chess.pieces.Piece;
 import chess.types.PieceColour;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 /**
@@ -15,21 +20,22 @@ import java.util.Scanner;
  *
  */
 public class Start {
+	static ChessBoard game;
 
 	public static void main(String[] args) {
 		AnsiConsole.systemInstall();
 		Scanner sc = new Scanner(System.in);
 		
-		ChessBoard j = new ChessBoard();
+		game = new ChessBoard();
 		//Create Pieces and put them in place
-		NewGame.newGame(j);
+		NewGame.newGame(game);
 		
-		j.showBoard();
-		while (executeCommand(sc, j)) {
-			j.showBoard();
+		game.showBoard();
+		while (executeCommand(sc)) {
+			game.showBoard();
 			
-			if (j.isCheck() != 0) {
-				switch (j.isCheck()) {
+			if (game.isCheck() != 0) {
+				switch (game.isCheck()) {
 				case -1:
 					System.out.println("Black player is in check!");
 					break;
@@ -45,7 +51,7 @@ public class Start {
 
 	}
 	
-	private static boolean executeCommand(Scanner sc, ChessBoard board) {
+	private static boolean executeCommand(Scanner sc) {
 		String command = sc.next();
 		
 		switch (command) {
@@ -54,11 +60,11 @@ public class Start {
 		case "move":
 			int[] currentPiece = interpretCoord(sc.next());
 			int[] targetSquare = interpretCoord(sc.next());
-			Piece pieceToMove = board.getPiece(currentPiece[0], currentPiece[1]);
+			Piece pieceToMove = game.getPiece(currentPiece[0], currentPiece[1]);
 			
-			if (board.isWhitePlayerTurn() == (pieceToMove.getPlayer() == PieceColour.WHITE)) { //if it is current piece's player's turn to move
+			if (game.isWhitePlayerTurn() == (pieceToMove.getPlayer() == PieceColour.WHITE)) { //if it is current piece's player's turn to move
 
-				if (pieceToMove.getPlayer() == PieceColour.BLACK && board.isCheck() == -1) {//if moving black and black is in check
+				if (pieceToMove.getPlayer() == PieceColour.BLACK && game.isCheck() == -1) {//if moving black and black is in check
 					if (!(pieceToMove instanceof King)) { //if not moving king
 						System.out.println("Siirrä kunkkua! Paina Enter jatkaaksesi.");
 						try {
@@ -66,11 +72,11 @@ public class Start {
 						} catch (IOException e) {
 						}
 					} else {
-						if (board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
-							board.setWhitePlayerTurn(!board.isWhitePlayerTurn());
+						if (game.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
+							game.setWhitePlayerTurn(!game.isWhitePlayerTurn());
 						}
 					}
-				} else if (pieceToMove.getPlayer() == PieceColour.WHITE && board.isCheck() == 1) {//if moving white and white is in check
+				} else if (pieceToMove.getPlayer() == PieceColour.WHITE && game.isCheck() == 1) {//if moving white and white is in check
 					if (!(pieceToMove instanceof King)) {//if not moving king
 						System.out.println("Siirrä kunkkua! Paina Enter jatkaaksesi.");
 						try {
@@ -78,13 +84,13 @@ public class Start {
 						} catch (IOException e) {
 						}
 					} else {
-						if (board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
-							board.setWhitePlayerTurn(!board.isWhitePlayerTurn());
+						if (game.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
+							game.setWhitePlayerTurn(!game.isWhitePlayerTurn());
 						}
 					}
 				} else {
-					if (board.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
-						board.setWhitePlayerTurn(!board.isWhitePlayerTurn());
+					if (game.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
+						game.setWhitePlayerTurn(!game.isWhitePlayerTurn());
 					}
 				}
 			} else {
@@ -102,6 +108,24 @@ public class Start {
 			} catch (IOException e) {
 			}
 			return true;
+		case "save":
+			System.out.println("Are you sure? (y/n)");
+			if (sc.next().equals("y")) {
+				saveGame();
+			}
+			break;
+		case "load":
+			System.out.println("Are you sure? (y/n)");
+			if (sc.next().equals("y")) {
+				loadGame();
+			}
+			break;
+		case "newgame":
+			System.out.println("Are you sure? (y/n)");
+			if (sc.next().equals("y")) {
+				NewGame.newGame(game);
+			}
+			
 		default:
 		}
 		return true;
@@ -170,10 +194,38 @@ public class Start {
 	}
 
 	private static void saveGame() {
-		//TODO save
+		try {
+			FileOutputStream fout = new FileOutputStream(".\\save.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fout);
+			oos.writeObject(game);
+			oos.close();
+			System.out.println("Game Saved!");
+			System.in.read(); //wait for enter key
+		} catch (Exception e) {
+			System.out.println("Game Saving Failed!");
+			try {
+				System.in.read();
+			} catch (IOException e1) {
+			} //wait for enter key
+			e.printStackTrace();
+		}
 	}
 	
 	private static void loadGame() {
-		//TODO load
+		try {
+			FileInputStream fin = new FileInputStream(".\\save.txt");
+			ObjectInputStream ois = new ObjectInputStream(fin);
+			game = (ChessBoard) ois.readObject();
+			ois.close();
+			System.out.println("Game Loaded!");
+			System.in.read(); //wait for enter key
+		} catch (Exception e) {
+			System.out.println("Game Loading Failed!");
+			try {
+				System.in.read();
+			} catch (IOException e1) {
+			} //wait for enter key
+			e.printStackTrace();
+		}
 	}
 }

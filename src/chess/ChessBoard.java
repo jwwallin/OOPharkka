@@ -5,7 +5,9 @@ import chess.types.PieceColour;
 import static org.fusesource.jansi.Ansi.*;
 import static org.fusesource.jansi.Ansi.Color.*;
 
-public class ChessBoard {
+import java.io.Serializable;
+
+public class ChessBoard implements Serializable {
 	private Piece[][] board = new Piece[8][8];
 	private boolean whitePlayerTurn = false;
 
