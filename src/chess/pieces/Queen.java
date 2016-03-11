@@ -49,17 +49,17 @@ public class Queen extends Piece {
 	@Override
 	public boolean isLegalMove(ChessBoard currentBoard, int x, int y) {
 		if (currentBoard.getPiece(x, y) == null) { //if target square is empty
-			if(Math.abs(x - this.getX()) <= 1 && Math.abs(y - this.getY()) <= 1) { //if moving by one square in any direction
+			if(Math.abs(x - this.getX()) > 0 || Math.abs(y - this.getY()) > 0) { //if moving by one square in any direction
 				return true;
 			}
-			if (Math.abs(x) == Math.abs(y)) { //if moving diagonally
+			if (Math.abs(x-this.getX()) == Math.abs(y-this.getY())) { //if moving diagonally
 				if (x > this.getX()) { //if moving diagonally to the right
 					if (y > this.getY()) { //if moving diagonally up
 						int X = this.getX();
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X+i, Y+i) != null) return false; // if there is a piece between current square and target square
+							if (currentBoard.getPiece(X+i, Y-i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					} else {
@@ -67,7 +67,7 @@ public class Queen extends Piece {
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X+i, Y-i) != null) return false; // if there is a piece between current square and target square
+							if (currentBoard.getPiece(X+i, Y+i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					}
@@ -77,7 +77,7 @@ public class Queen extends Piece {
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X-i, Y+i) != null) return false; // if there is a piece between current square and target square
+							if (currentBoard.getPiece(X-i, Y-i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					} else {
@@ -85,7 +85,7 @@ public class Queen extends Piece {
 						int Y = this.getY();
 						
 						for (int i = 1; i < Math.abs(x - this.getX()); i++) { //loop through all squares between current and target squares
-							if (currentBoard.getPiece(X-i, Y-i) != null) return false; // if there is a piece between current square and target square
+							if (currentBoard.getPiece(X-i, Y+i) != null) return false; // if there is a piece between current square and target square
 						}
 						return true;
 					}

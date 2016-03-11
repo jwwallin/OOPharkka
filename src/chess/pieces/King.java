@@ -52,7 +52,7 @@ public class King extends Piece {
 					for (Piece p: arr) { //loop through columns
 						if (p == null) continue; //if no piece in current square
 						if (p.getPlayer() == this.getPlayer()) continue; //if piece is same colour do nothing
-						if (p.isLegalMove(currentBoard, x, y)) return false; //if current piece can move to target square
+						if (p.isLegalMove(currentBoard, x, y)) return true; //if current piece can move to target square
 					}
 				}
 				return true; //if this is reached no piece is threatening target square

@@ -76,7 +76,9 @@ public class Start {
 						try {
 							System.in.read(); //wait for enter key
 						} catch (IOException e) {
+						} catch (Exception f) {
 						}
+						
 					} else {
 						if (game.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
 							game.setWhitePlayerTurn(!game.isWhitePlayerTurn());
@@ -90,6 +92,7 @@ public class Start {
 						try {
 							System.in.read(); //wait for enter key
 						} catch (IOException e) {
+						} catch (Exception f) {
 						}
 					} else {
 						if (game.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
