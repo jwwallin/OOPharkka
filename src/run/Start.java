@@ -111,7 +111,7 @@ public class Start {
 			return true;
 		case "help":
 			System.out.println("Green color is the white player.\nRed color is the black player.\nFirst type in 'move' and press enter, "
-					+ "then the coordinate of the piece you want to move,\nand finally the coordinate of the position you want to move your piece to.\n"
+					+ "then type in the coordinate of the piece you want to move, and finally the coordinate of the position you want to move your piece to.\n"
 					+ "Type 'save' to save the game and 'load' to load the game. 'newgame' starts a new game.");
 			try {
 				System.in.read(); //wait for enter key
@@ -133,7 +133,12 @@ public class Start {
 		case "newgame":
 			System.out.println("Are you sure? (y/n)");
 			if (sc.next().equals("y")) {
-				NewGame.newGame(game);
+				try {
+					new ProcessBuilder("cmd","/c start GameStart.bat  ^& exit").inheritIO().start();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			    System.exit(0);
 			}
 			
 		default:
