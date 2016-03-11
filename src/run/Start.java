@@ -31,8 +31,14 @@ public class Start {
 		NewGame.newGame(game);
 		
 		game.showBoard();
+		System.out.println("\nIt is white player's turn.");
 		while (executeCommand(sc)) {
 			game.showBoard();
+			if (game.isWhitePlayerTurn()){
+				System.out.println("\nIt is white player's turn.");
+			}else{
+				System.out.println("\nIt is black player's turn.");
+			}
 			
 			if (game.isCheck() != 0) {
 				switch (game.isCheck()) {
@@ -74,6 +80,8 @@ public class Start {
 					} else {
 						if (game.move(currentPiece[0], currentPiece[1], targetSquare[0], targetSquare[1])) { //if move succee change turn
 							game.setWhitePlayerTurn(!game.isWhitePlayerTurn());
+							game.showBoard();
+							
 						}
 					}
 				} else if (pieceToMove.getPlayer() == PieceColour.WHITE && game.isCheck() == 1) {//if moving white and white is in check
@@ -102,7 +110,9 @@ public class Start {
 			}
 			return true;
 		case "help":
-			System.out.println("This is the help! hihi!");
+			System.out.println("Green color is the white player.\nRed color is the black player.\nFirst type in 'move' and press enter, "
+					+ "then the coordinate of the piece you want to move,\nand finally the coordinate of the position you want to move your piece to.\n"
+					+ "Type 'save' to save the game and 'load' to load the game. 'newgame' starts a new game.");
 			try {
 				System.in.read(); //wait for enter key
 			} catch (IOException e) {
