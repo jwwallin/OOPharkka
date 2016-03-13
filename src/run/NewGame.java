@@ -24,10 +24,10 @@ public class NewGame {
 					} else if (file == 2 || file == 5){
 						Bishop blackBishop = new Bishop(PieceColour.BLACK,file,rank);
 						j.addPiece(blackBishop, file, rank);
-					} else if (file == 4){
+					} else if (file == 3){
 						King blackKing = new King(PieceColour.BLACK,file,rank);
 						j.addPiece(blackKing, file, rank);
-					} else if (file == 3){
+					} else if (file == 4){
 						Queen blackQueen = new Queen(PieceColour.BLACK,file,rank);
 						j.addPiece(blackQueen, file, rank);
 					}
@@ -50,10 +50,10 @@ public class NewGame {
 					} else if (file == 2 || file == 5){
 						Bishop whiteBishop = new Bishop(PieceColour.WHITE,file,rank);
 						j.addPiece(whiteBishop, file, rank);
-					} else if (file == 4){
+					} else if (file == 3){
 						King whiteKing = new King(PieceColour.WHITE,file,rank);
 						j.addPiece(whiteKing, file, rank);
-					} else if (file == 3){
+					} else if (file == 4){
 						Queen whiteQueen = new Queen(PieceColour.WHITE,file,rank);
 						j.addPiece(whiteQueen, file, rank);
 					}
